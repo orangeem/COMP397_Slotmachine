@@ -14,6 +14,7 @@ var resetButton: createjs.Bitmap;
 var powerButton: createjs.Bitmap;
 
 // functions --------------------------------
+
 function init() {
     canvas = document.getElementById("canvas");
     stage = new createjs.Stage(canvas);
@@ -29,29 +30,66 @@ function gameLoop() {
     stage.update();
 }
 
-function buttonClicked() {
-    
+function spinButtonClicked() {
+    console.log("Spin Button Clicked");
 }
 
-function buttonOut() {
-   
+function spinButtonOut(bitmap: createjs.Bitmap) {
+	spinButton.alpha = 1; //100% alpha
+   //Console.log("spin button out");
 }
 
-function buttonOver() {
-   
+function spinButtonOver(bitmap: createjs.Bitmap) {
+   spinButton.alpha = 0.7;
+   //Console.log("spin button over");
 }
 
-function main() {
-	game = new createjs.Container(); // Instantiates the Game container
-	
-	background = new createjs.Bitmap("");
+function createUI() {
+background = new createjs.Bitmap("assets/images/background.png");
 	game.addChild(background); // Add the background image to the game container
 	
-	spinButton = new createjs.Bitmap();
+	//Spin button
+	spinButton = new createjs.Bitmap("assets/images/spinButton.png");
 	game.addChild(spinButton);
 	spinButton.x = 410;
 	spinButton.y = 545;
 
+	//spin button event listeners
+	spinButton.addEventListener("click", spinButtonClicked);
+	spinButton.addEventListener("mouseover", spinButtonOver, this);
+	spinButton.addEventListener("mouseout", spinButtonOut, this);
+
+	//Bet Max button
+	betMaxButton = new createjs.Bitmap("assets/images/betMaxButton.png");
+	game.addChild(betMaxButton);
+	betMaxButton.x = 325;
+	betMaxButton.y = 560;
+
+	//Bet One button
+	betOneButton = new createjs.Bitmap("assets/images/betOneButton.png");
+	game.addChild(spinButton);
+	betOneButton.x = 235;
+	betOneButton.y = 560;
+
+	//Reset button
+	resetButton = new createjs.Bitmap("assets/images/resetButton.png");
+	game.addChild(resetButton);
+	resetButton.x = 150;
+	resetButton.y = 560;
+
+	//Power button
+	powerButton = new createjs.Bitmap("assets/images/powerButton.png");
+	game.addChild(powerButton);
+	powerButton.x = 55;
+	powerButton.y = 560;
+
+}
+
+
+function main() {
+	game = new createjs.Container(); // Instantiates the Game container
+	
+	createUI();
 
 	stage.addChild(game); // Adds the game container to the stage    
 
