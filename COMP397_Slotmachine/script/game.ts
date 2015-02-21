@@ -3,8 +3,15 @@
 // variables --------------------------------
 var canvas;
 var stage: createjs.Stage;
-var helloText: createjs.Text; 
-var buttonBitmap: createjs.Bitmap;
+
+// Game objects
+var game: createjs.Container; //Main Game Container object
+var background: createjs.Bitmap;
+var spingButton: createjs.Bitmap;
+var betMaxButton: createjs.Bitmap;
+var betOneButton: createjs.Bitmap;
+var resetButton: createjs.Bitmap;
+var powerButton: createjs.Bitmap;
 
 // functions --------------------------------
 function init() {
@@ -23,29 +30,30 @@ function gameLoop() {
 }
 
 function buttonClicked() {
-    helloText.text = "Goodbye!";
+    
 }
 
 function buttonOut() {
-    buttonBitmap.alpha = 1;
+   
 }
 
 function buttonOver() {
-    buttonBitmap.alpha = 0.5;
+   
 }
 
 function main() {
-    //This is where all the work happens
-    helloText = new createjs.Text("Hello world", "40px Consolas", "#000000");
-    stage.addChild(helloText); // First child Object that we add to the stage
-    buttonBitmap = new createjs.Bitmap("assets/images/button.jpg");
+	game = new createjs.Container(); // Instantiates the Game container
+	
+	background = new createjs.Bitmap("");
+	game.addChild(background); // Add the background image to the game container
+	
+	spinButton = new createjs.Bitmap();
+	game.addChild(spinButton);
+	spinButton.x = 410;
+	spinButton.y = 545;
 
-    buttonBitmap.x = 100;
-    buttonBitmap.y = 100;
-    buttonBitmap.addEventListener("click", buttonClicked);
-    buttonBitmap.addEventListener("mouseout", buttonOut);
-    buttonBitmap.addEventListener("mouseover", buttonOver);
-    stage.addChild(buttonBitmap);
+
+	stage.addChild(game); // Adds the game container to the stage    
 
     
 }
